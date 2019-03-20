@@ -1,7 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
-\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante grafos.}
+%\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante grafos.}
+\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red resolviendo un problema de optimizaci\'on.}
 %\author{Leonardo Pizarro}
 \date{}
 
@@ -34,12 +35,14 @@ Con lo anterior, se puede proceder a la cuantificaci\'on de las propiedades de l
 % Se sugiere agregar una sección para “Antecedentes” en donde se puedan describir conceptos relevantes en este trabajo. Por ejemplo, en la hipótesis se habla de múltiples métricas. Sin embargo no queda claro a qué se refiere ello. Estas definiciones podrían estar definidas dentro de “Antecedentes”
 % En la sección de Antecedentes también se podrían describir los trabajos actuales relacionados con el problema.
 % Indicar cuál es la intuición para relacionar un problema de Set Covering con extracción de filamentos. Sería bueno describir este punto en la propuesta. La definición de Set-Covering y su relación con este problema también podría estar en Antecedentes.
-Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. Luego, la diferenciaci\'on puede ser categorizada en base al uso de m\'as herramientas de procesamiento de im\'agenes para obtener la individualizaci\'on de filamentos, o realizar esta individualizaci\'on, tratando el problema como uno de optimizaci\'on. 
+Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. Luego, la diferenciaci\'on puede ser categorizada en base al uso de m\'as herramientas de procesamiento de im\'agenes para obtener la individualizaci\'on de filamentos, o realizar esta individualizaci\'on tratando el problema como uno de optimizaci\'on. 
 
 \medskip
 En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}.
+% describir alguno de estos papers 
+
 %que emplea la optimizaci\'on como enfoque,
-En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos como un problema de optimzaci\'on, utilizando las m\'etricas de distancia Euclidiana y angular como restricciones. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Covering}.
+En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las m\'etricas de distancia Euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Covering}.
 
 %representa un camino en este grafo, y los conjuntos de caminos 
 %para realizar un an\'alisis del grafo obtenido~\cite{breuer2015define}. % Describir mas los papers de estas secciones  
@@ -48,18 +51,21 @@ En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'
 Espec\'ificamente para los m\'etodos de la primera categor\'ia, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % basados en grafos
 En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. A modo de ejemplo, el programa \texttt{DeFine} desarrollado en \cite{breuer2015define} describe el problema de identificaci\'on de filamentos como un problema de b\'usqueda de caminos, es decir, como un problema del tipo {\it Path Cover}. Se define el peso de cada segmento/arista por un c\'alculo de {\it aspereza}, asociada al ancho o intensidad de la arista, un conjunto de estas, o tambi\'en puede ser calculado respecto al \'angulo entre aristas.
-Este problema particular es llamado {\it Filament Covering Problem} y los autores demuestran que es \textbf{NP-Hard}, por lo que proponen un algoritmo de aproximaci\'on mediante \textit{Set Cover}, cuyo objetivo es que cada arista pertenezca al menos a un conjunto. La definici\'on de {\it Set Cover} y la asociaci\'on al FCP es:
+Este problema particular es llamado {\it Filament Covering Problem} y los autores demuestran que es \textbf{NP-Hard}, por lo que proponen un algoritmo de aproximaci\'on mediante \textit{Set Cover}, cuyo objetivo es que cada arista pertenezca al menos a un conjunto. La definici\'on de {\it Set Cover} es:
 
 \begin{quote}
 Dado un conjunto de elementos, denominado universo, y $n$ conjuntos cuya unión comprende el universo, el {\it Set Cover Problem} consiste en identificar el menor n\'umero de conjuntos cuya unión aun contiene todos los elementos del universo.
-
-La adaptaci\'on a lo definido por FCP: Sea el universo $U$ conformado por las aristas del grafo, y un conjunto $S$, conformado por conjuntos de aristas, cada uno con costo $c_s$, $s \in S$:
-
-Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio) tal que cada elemento en $U$ este cubierto al menos una vez.
 \end{quote}
 
+La adaptaci\'on a lo definido por {\it FCP} es: 
+\begin{quote}
+Sea el universo $U$ conformado por las aristas del grafo, y un conjunto $S$, conformado por conjuntos de aristas, cada uno con costo $c_s$, $s \in S$:
 
+Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, dependiendo de la forma en que se calcula la aspereza) tal que cada elemento en $U$ este cubierto al menos una vez.
+\end{quote}
 
+Con la demostraci\'on de que FCP es {\bf NP-Hard}, con la cantidad de caminos creciendo de forma exponencial respecto al n\'umero de nodos, los autores plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario.
+\medskip
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
 \noindent
 Las propuestas basadas en optimizaci\'on facilitan el uso de t\'ecnicas conocidas, automatizando la recuperaci\'on de informaci\'on e incluyendo una mayor cantidad de propiedades a cada arista.
@@ -155,37 +161,41 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 %- aclarar multiples metricas -> cambiado a propiedades
 % Definir objetivo general y especificos
 
-Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando m\'ultiples caracter\'isticas de los filamentos, as\'i como la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red planteado un problema de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando m\'ultiples caracter\'isticas de los filamentos, as\'i como la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
 
 %aproximado de {\it Set Covering}...
 
 Para indagar esta hip\'otesis, se propone satisfacer los siguientes objetivos:
+\subsection{Objetivo General}
+Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo que incorpore la informaci\'on {\it a priori} disponible.
+
+\subsection{Objetivos Espec\'ificos}
 \begin{itemize}
-    \item 
+    \item Generar una formulaci\'on matem\'atica de un problema de optimizaci\'on para la identificaci\'on de filamentos. 
+    \item Implementar un algoritmo entregue una soluci\'on exacta o aproximada, dependiendo de la complejidad computacional del problema. 
 \end{itemize}
 
-%\subsection{Objetivo General}
-
-%\subsection{Objetivos Espec\'ificos}
-
+\subsection{Contribuci\'on}
 
 % Contribuci\'on:
-Como resultado de los objetivos planteados, se obtendr\'a una herraminta el análisis automatizado de la estructura citoesqueletal, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificación de procesos patol\'ogicos de forma autom\'atica.
+Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\'alisis automatizado de la estructura citoesqueletal, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
 
 \section{Metodolog\'ia}
 %``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
 % El segundo párrafo de la metodología no queda claro y es la que tiene relación con Set-Covering.
 %* En una metodología es crítico especificar cómo se evaluará la propuesta (métricas) y este documento carece de ello. Se recomienda agregar esta información dentro de la metodología.
 
-Para la realizaci\'on del estudio propuesto se realizar\'a una recopilaci\'on detallada del estado del arte relacionado al an\'alisis de estructuras formadas por filamentos en c\'elulas. A su vez, el uso de software existente que provee pre-procesamiento de im\'agenes para la esqueletonizaci\'on y/o extracción de grafos que represente la estructura de la c\'elula, servir\'a de base para la obtenci\'on de ejemplos iniciales. Estos programas presentan algunos de los problemas mencionados en las secciones anteriores, por lo que requerir\'an de adaptaciones para este trabajo.  
+Para la realizaci\'on del estudio propuesto se realizar\'a una recopilaci\'on detallada del estado del arte relacionado a la identificaci\'on de filamentos, con enfoque en soluciones que utilicen no s\'olo herramientas de visi\'on por computador.
+Por otra parte, el uso de software existente que provee pre-procesamiento de im\'agenes para la esqueletonizaci\'on y/o extracción de grafos que represente la estructura de la c\'elula, servir\'a de base para la obtenci\'on de ejemplos iniciales para realizar pruebas a la implementaci\'on del algoritmo. Estos programas presentan algunos de los problemas mencionados en las secciones anteriores, por lo que requerir\'an de adaptaciones para este trabajo.  
 
-El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que los v\'ertices del grafo contengan 
-pesos asociados a la ponderaci\'on de m\'ultiples propiedades, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otro.
-La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada v\'ertice, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on.
+El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otra.
+La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on.
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
 
 Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita obtener resultados cuantitativos en base a lo planteado en la hip\'otesis sobre un grafo que represente una estructura citoesqueletal. 
+
+% COMO MEDIR LA CALIDAD
 Para la validaci\'on de aquello, se utilizaran inicialmente im\'agenes sint\'eticas, para luego usar im\'agenes reales disponibles. Estas \'ultimas han sido evaluadas por expertos, lo que establece el \textit{Gold Standard}, o criterio contra el cual se realizar\'a la validaci\'on. Dependiendo del avance del algoritmo, se llevara a cabo tambi\'en una comparaci\'on con m\'etodos similares existentes en la literatura. 
 \bibliographystyle{plain}
 \bibliography{references}
