@@ -35,6 +35,9 @@ Con lo anterior, se puede proceder a la cuantificaci\'on de las propiedades de l
 % Se sugiere agregar una sección para “Antecedentes” en donde se puedan describir conceptos relevantes en este trabajo. Por ejemplo, en la hipótesis se habla de múltiples métricas. Sin embargo no queda claro a qué se refiere ello. Estas definiciones podrían estar definidas dentro de “Antecedentes”
 % En la sección de Antecedentes también se podrían describir los trabajos actuales relacionados con el problema.
 % Indicar cuál es la intuición para relacionar un problema de Set Covering con extracción de filamentos. Sería bueno describir este punto en la propuesta. La definición de Set-Covering y su relación con este problema también podría estar en Antecedentes.
+
+%Me fije que ahora explicas mas directamente set cover, pero la parte de la intuicion que relaciona con la imagen no es tan clara (en antecedentes y luego hipotesis).
+
 Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. Luego, la diferenciaci\'on puede ser categorizada en base al uso de m\'as herramientas de procesamiento de im\'agenes para obtener la individualizaci\'on de filamentos, o realizar esta individualizaci\'on tratando el problema como uno de optimizaci\'on. 
 
 \medskip
@@ -123,7 +126,7 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
         \caption{Visualizaci\'on de otro resultado posible, permitiendo filamentos m\'as complejos.}
         \label{Fig1f}
     \end{subfigure}
-    \caption{Procedimiento para obtener un grafo  partir de una imagen, as\'i como posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada v\'ertice del grafo en (c) y (d) un peso que pondere diversos criterios como \'angulo del filamento, grosor, ancho y/o largo. Dependiendo de la ponderaci\'on y otras restricciones, se obtendr\'an resultados como (e) o (f), expresado gr\'aficamente mediante gradiente de colores.  Fuente: \cite{breuer2015define} y elaboraci\'on propia}
+    \caption{Procedimiento para obtener un grafo  partir de una imagen, as\'i como posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada v\'ertice del grafo en (c) y (d) un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo. Dependiendo de la ponderaci\'on y otras restricciones, se obtendr\'an resultados como (e) o (f), expresado gr\'aficamente mediante gradiente de colores.  Fuente: \cite{breuer2015define} y elaboraci\'on propia}
 \end{figure*}
 
 %resolucion, cantidad parametros, descriptores, costo computacional
@@ -141,7 +144,7 @@ En resumen, el problema de identificar filamentos en imagenes de microscop\'ia e
 Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de visi\'on por computador, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional. Esto nos gu\'ia hacia la pregunta:
 
 \smallskip
-Recorriendo el grafo que representa, inicialmente, la estructura de una c\'elula, ¿es posible determinar correctamente la cantidad de filamentos (estructuras alargadas), utilizando un enfoque de optimizaci\'on, mediante la asociaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, grosor, \'angulo y/o direcci\'on, entre otros, a las aristas del grafo ? 
+Recorriendo el grafo que representa, inicialmente, la estructura de una c\'elula, ¿es posible determinar correctamente la cantidad de filamentos (estructuras alargadas), utilizando un enfoque de optimizaci\'on, mediante la asociaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, grosor, \'angulo de bifurcaci\'on y/o direcci\'on, entre otros, a las aristas del grafo ? 
 %(geometricos comunmente)
 % Entre las investigaciones y herramientas existentes derivadas de los mismos, 
 %- overlap, intensidad, fragmentación
@@ -162,6 +165,8 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 \label{hipotesis}
 %- aclarar multiples metricas -> cambiado a propiedades
 % Definir objetivo general y especificos
+
+% En hipotesis todavia hablas de multiples metricas/criterios, siguiendo al revisor esos tiene que precisarlo mas (puedes hablar de distancia, angulo y restricciones como si se permiten bifurcaciones o no, no es necesario que sean todas).
 
 Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando m\'ultiples caracter\'isticas de los filamentos, as\'i como la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
 
