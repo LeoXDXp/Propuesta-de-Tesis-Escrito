@@ -9,6 +9,7 @@
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\renewcommand\refname{Referencias}
 \begin{document}
 
 \maketitle
@@ -69,12 +70,12 @@ Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, d
 
 Con la demostraci\'on de que FCP es {\bf NP-Hard}, dado que la cantidad de caminos creciendo de forma exponencial respecto al n\'umero de nodos, los autores plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario.
 
-Utilizando la figura \ref{Fig1d} como referencia, es posible visualizar el universo $U$ constituido por las aristas, siendo la funci\'on definida para asignaci\'on de pesos a cada arista la que determina si se obtiene un resultado como la figura \ref{Fig1e} o \ref{Fig1f}.
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
 % Aquello permitir\'ia pasar de Fig1d a Fig1f por ejemplo
 
 \bigskip
-Las propuestas basadas en optimizaci\'on facilitan el uso de t\'ecnicas conocidas, automatizando la recuperaci\'on de informaci\'on e incluyendo una mayor cantidad de propiedades a cada arista.
+Las propuestas basadas en optimizaci\'on facilitan el uso de t\'ecnicas conocidas, automatizando la recuperaci\'on de informaci\'on e incluyendo una mayor cantidad de propiedades a cada arista. Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig1e} o \ref{Fig1f} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas.
+
 En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area suele ser la cantidad de par\'ametros y la dificultad en su ajuste, en las diversas herramientas existentes. Un segundo problema com\'un es que la obtenci\'on de informaci\'on relacionada a la morfolog\'ia y el comportamiento de las redes es m\'as cualitativo que cuantitativo \cite{asgharzadeh2018computational}\cite{qiu2014quantitative}, lo que supone un problema al trasladar el  an\'alisis a una gran cantidad de datos, dado que cada enfoque es demasiado espec\'ifico a su correspondiente software.
 
 
