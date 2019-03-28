@@ -67,9 +67,11 @@ Sea el universo $U$ conformado por las aristas del grafo, y un conjunto $S$, con
 Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, dependiendo de la forma en que se calcula la aspereza) tal que cada elemento en $U$ este cubierto al menos una vez.
 \end{quote}
 
-Con la demostraci\'on de que FCP es {\bf NP-Hard}, con la cantidad de caminos creciendo de forma exponencial respecto al n\'umero de nodos, los autores plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario.
-%es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
+Con la demostraci\'on de que FCP es {\bf NP-Hard}, dado que la cantidad de caminos creciendo de forma exponencial respecto al n\'umero de nodos, los autores plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario.
 
+Utilizando la figura \ref{Fig1d} como referencia, es posible visualizar el universo $U$ constituido por las aristas, siendo la funci\'on definida para asignaci\'on de pesos a cada arista la que determina si se obtiene un resultado como la figura \ref{Fig1e} o \ref{Fig1f}.
+%es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
+% Aquello permitir\'ia pasar de Fig1d a Fig1f por ejemplo
 
 \bigskip
 Las propuestas basadas en optimizaci\'on facilitan el uso de t\'ecnicas conocidas, automatizando la recuperaci\'on de informaci\'on e incluyendo una mayor cantidad de propiedades a cada arista.
@@ -101,14 +103,14 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{graph-define-4-bw-inverted.png}
-        \caption{\textit{Skeleton} representativo de la red sobre la imagen de (b).}
+        \caption{Esqueletonizaci\'on representativa de la red sobre la imagen de (b).}
         \label{Fig1c}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{graph-no-bg-define-4-bw-inverted.png}
-        \caption{Grafo que representa el \textit{skeleton} de la red.}
+        \caption{Grafo que representa la esqueletonizaci\'on de la red.}
         \label{Fig1d}
     \end{subfigure}
     \vskip\baselineskip
@@ -125,7 +127,7 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
         \caption{Visualizaci\'on de otro resultado posible, permitiendo filamentos m\'as complejos.}
         \label{Fig1f}
     \end{subfigure}
-    \caption{Procedimiento para obtener un grafo  partir de una imagen, as\'i como posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada v\'ertice del grafo en (c) y (d) un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo. Dependiendo de la ponderaci\'on y otras restricciones, se obtendr\'an resultados como (e) o (f), expresado gr\'aficamente mediante gradiente de colores.  Fuente: \cite{breuer2015define} y elaboraci\'on propia}
+    \caption{Procedimiento para obtener un grafo  partir de una imagen, as\'i como posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada v\'ertice del grafo en (c) y (d) un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo. Dependiendo de la ponderaci\'on y otras restricciones, planteando un problema de optimizaci\'on, se obtendr\'an resultados como (e) o (f), expresado gr\'aficamente mediante gradiente de colores.  Fuente: \cite{breuer2015define} y elaboraci\'on propia}
 \end{figure*}
 
 %resolucion, cantidad parametros, descriptores, costo computacional
@@ -167,7 +169,7 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 
 % En hipotesis todavia hablas de multiples metricas/criterios, siguiendo al revisor esos tiene que precisarlo mas (puedes hablar de distancia, angulo y restricciones como si se permiten bifurcaciones o no, no es necesario que sean todas).
 
-Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando m\'ultiples caracter\'isticas de los filamentos, as\'i como la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, entre otras, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
 
 %aproximado de {\it Set Covering}...
 
@@ -189,6 +191,7 @@ Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos
 
 % Contribuci\'on:
 Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\'alisis automatizado de la estructura citoesqueletal, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
+% pasar de Fig1d a Fig1e o Fig1f
 
 \section{Metodolog\'ia}
 %``I always thought something was fundamentally wrong with the universe'' \citep{adams1995hitchhiker}
