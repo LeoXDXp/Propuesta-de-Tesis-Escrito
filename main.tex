@@ -27,7 +27,7 @@ Por su parte, el análisis de filamentos que conforman la red, puede indicar el 
 % A modo de ejemplo, una red de proteinas de una c\'elula eucariota contiene tres tipos de filamentos en la constituci\'on de su citoesqueleto: microfilamentos, microt\'ubulos y filamentos intermedios. Sin embargo, una estructura de citoesqueleto también existe en una bacteria.
   
 \vspace{.5cm}
-Los m\'etodos actuales para analizar las redes mencionadas se basan en el procesamiento directo de la imagen obtenida a partir de una visualizaci\'on mediante un microscopio, utilizando diversas t\'ecnicas como esqueletonizaci\'on (Figura \ref{Fig1c}), la transformada de Rad\'on o {\it template matching}, entre otras. Esto permite identificar los filamentos de forma individual, o el grafo que representa a la red (Figura \ref{Fig1d}).
+Los m\'etodos actuales para analizar las redes mencionadas se basan en el procesamiento directo de la imagen obtenida a partir de una visualizaci\'on mediante un microscopio, utilizando diversas t\'ecnicas como esqueletonizaci\'on (Figura \ref{Fig1c}), la transformada de Rad\'on o {\it template matching}. Esto permite identificar los filamentos de forma individual, o el grafo que representa a la red (Figura \ref{Fig1d}).
  %como tambi\'en pueden utilizarse una esqueletonizaci\'on de la misma (Figura \ref{Fig1c}), o la construcci\'on de un grafo (Figura \ref{Fig1d}), entre otras.
  % En todos estos casos, el objetivo radica en
 Con lo anterior, se puede proceder a la cuantificaci\'on de las propiedades de la red tales como n\'umero de filamentos, largo de estos, volumen, y curvatura entre otros. Estos m\'etodos, basados en la observaci\'on mediante microscop\'ia \'optica tienen como cota m\'axima de resoluci\'on el l\'imite de difracci\'on, $\lambda/2$. Donde $\lambda$ es la longitud de onda de la luz utilizada (o color). Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados, conllevando a que dos partes del grafo cercanos puedan ser observadas como una, dificultando su estudio. Lo anterior es relevante para asociar las propiedades de la red a los v\'ertices del grafo extra\'ido, dando pie a la caracterizaci\'on del mismo (Figura \ref{Fig1e}).
@@ -170,13 +170,13 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 
 % En hipotesis todavia hablas de multiples metricas/criterios, siguiendo al revisor esos tiene que precisarlo mas (puedes hablar de distancia, angulo y restricciones como si se permiten bifurcaciones o no, no es necesario que sean todas).
 
-Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, entre otras, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula, es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
 
 %aproximado de {\it Set Covering}...
 
 Para indagar esta hip\'otesis, se propone satisfacer los siguientes objetivos:
 \subsection{Objetivo General}
-Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo, evaluando la variaci\'on en el resultado con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, grosor, entre otras.
+Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo, evaluando la variaci\'on en el resultado con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, grosor.
 %y que incorpore la informaci\'on {\it a priori} disponible
 
 \subsection{Objetivos Espec\'ificos}
