@@ -41,7 +41,7 @@ La individualizaci\'on de filamentos permite cuantificar las propiedades de la r
 Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. Luego, la diferenciaci\'on puede ser categorizada en base al uso de m\'as herramientas de procesamiento de im\'agenes para obtener la individualizaci\'on de filamentos, o realizar esta individualizaci\'on tratando el problema como uno de optimizaci\'on. 
 
 \medskip
-En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}.
+En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}. Para estos m\'etodos, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % describir alguno de estos papers 
 
 %que emplea la optimizaci\'on como enfoque,
@@ -51,7 +51,6 @@ En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'
 %para realizar un an\'alisis del grafo obtenido~\cite{breuer2015define}. % Describir mas los papers de estas secciones  
 \medskip
 %Todos estos enfoques, cuya entrada principal de datos son las im\'agenes etiquetadas a trav\'es de marcadores fluorescentes, 
-Espec\'ificamente para los m\'etodos de la primera categor\'ia, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % basados en grafos
 En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que las medidas utilizadas por estas t\'ecnicas (medidas angulares o de distancia) son complejas de obtener de los expertos directamente.
 A modo de ejemplo, el programa \texttt{DeFine} desarrollado en \cite{breuer2015define} describe el problema de identificaci\'on de filamentos como un problema de b\'usqueda de caminos, es decir, como un problema del tipo {\it Path Cover}. Se define el peso de cada segmento/arista por un c\'alculo de {\it aspereza}, asociada al ancho o intensidad de la arista, un conjunto de estas, o tambi\'en puede ser calculado respecto al \'angulo entre aristas.
@@ -86,13 +85,13 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{define-weighted-4.png}
-        \caption{Representaci\'on de una red con cruces y sobreposici\'on de filamentos.}
+        \caption{Representaci\'on simplificada de una red con cruces y sobreposici\'on de filamentos en una imagen de microscop\'ia.}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{define-weighted-4-bw-invert.png}
-        \caption{Preprocesamiento de la imagen para la extracci\'on de la red.}
+        \caption{Preprocesamiento de la imagen mediante segmentaci\'on para la extracci\'on de la red.}
         \label{Fig1b}
     \end{subfigure}
     %\caption{Caption place holder}
@@ -103,7 +102,7 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{graph-define-4-bw-inverted.png}
-        \caption{Esqueletonizaci\'on representativa de la red sobre la imagen de (b).}
+	    \caption{Esqueletonizaci\'on representativa de la red sobre la imagen de \ref{Fig1b}.}
         \label{Fig1c}
     \end{subfigure}%
     ~ 
@@ -114,22 +113,22 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
         \label{Fig1d}
     \end{subfigure}
 %    \vskip\baselineskip
-    \caption{Procedimiento para obtener un grafo que representa la red, a partir del procesamiento de una imagen. Fuente: \cite{breuer2015define}}
+    \caption{Procedimiento para obtener un grafo que representa la red, a partir del procesamiento de una imagen de microscop\'ia, utilizando segmentaci\'on y esqueletonizaci\'on. Fuente: \cite{breuer2015define}}
 \end{figure*}
 
 
-\begin{figure*}[h!]
+\begin{figure*}[h]
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{define-weighted-4-expected2.png}
-        \caption{Visualizaci\'on de un resultado posible, limitando los filamentos identificados a estructuras simples.}
+        \caption{Visualizaci\'on de un resultado posible de individualizaci\'on, limitando los filamentos identificados a estructuras simples.}
         \label{Fig2a}
     \end{subfigure}%
     ~ 
     \begin{subfigure}[t]{0.5\textwidth}
         \centering
         \includegraphics[height=1.2in]{define-weighted-4-expected1.png}
-        \caption{Visualizaci\'on de otro resultado posible, permitiendo filamentos m\'as complejos.}
+        \caption{Visualizaci\'on de otro resultado posible de individualizaci\'on, permitiendo filamentos m\'as complejos.}
         \label{Fig2b}
     \end{subfigure}
 	\caption{Posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada arista del grafo, como el de la figura \ref{Fig1d}, un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo.Al plantearlo como un problema de optimizaci\'on, la ponderaci\'on y otras restricciones, entregar\'an resultados como \ref{Fig2a} o \ref{Fig2b}, expresado gr\'aficamente mediante gradiente de colores. Fuente: Elaboraci\'on propia}
