@@ -19,15 +19,14 @@
 % aclarar rol de la entrada al método. Importancia de la imagen respecto al grafo
 % En la propuesta se plantea desarrollar un método para extracción de filamentos, pero no queda claro cuál es la entrada al método, es un grafo o un imagen. Si es un grafo, la imagen juega algún papel importante?
 
-En la naturaleza, es posible encontrar de forma ubicua, estructuras alargadas (filamentos), las que conforman redes entre sí. La conformación de estas estructuras complejas y din\'amicas se puede observar en ejemplos particulares como en una red de prote\'inas de una c\'elula eucariota, as\'i como en una bacteria, ya que a pesar que pertenecen a distintos dominios, ambas tienen una estructura formada por filamentos. 
-El tipo de estructura de la red, puede ser catalogada por ejemplo, en estructuras c\'iclicas o sin ciclos, aportando informaci\'on extra respecto a lo que esperable de observar. 
-Por su parte, el análisis de filamentos que conforman la red, puede indicar el estado de \'esta, respecto a su ambiente o de su interior, as\'i como develar informaci\'on relevante sobre la relaci\'on entre la estructura biol\'ogica y funciones fisiol\'ogicas.  
+En la naturaleza, es posible encontrar de forma ubicua, estructuras alargadas (filamentos), las que conforman redes entre sí. La conformación de estas estructuras complejas y din\'amicas se puede observar en ejemplos particulares como en una red de prote\'inas de una c\'elula eucariota, as\'i como en bacterias, ya que a pesar que pertenecer a distintas familias, ambas tienen estructuras formada por filamentos. 
+Caracter\'isticas f\'isicas de estas redes generan propiedades tales como la presencia o ausencia de ciclos, o la posibilidad de dividir o no cada filamento. Por su parte, el análisis de filamentos que conforman la red, puede indicar el estado de \'esta, respecto a su ambiente o de su interior, as\'i como develar informaci\'on relevante sobre la relaci\'on entre la estructura biol\'ogica y funciones fisiol\'ogicas.  
 %movimiento interno, reparación de tejido,
 % estructuras dinamicas y complejas que juegan varios roles
 % A modo de ejemplo, una red de proteinas de una c\'elula eucariota contiene tres tipos de filamentos en la constituci\'on de su citoesqueleto: microfilamentos, microt\'ubulos y filamentos intermedios. Sin embargo, una estructura de citoesqueleto también existe en una bacteria.
   
 \vspace{.5cm}
-Los m\'etodos actuales para analizar las redes mencionadas se basan en el procesamiento directo de la imagen obtenida a partir de una visualizaci\'on mediante un microscopio, utilizando diversas t\'ecnicas como esqueletonizaci\'on (Figura \ref{Fig1c}), la transformada de Rad\'on o {\it template matching}. Esto permite identificar los filamentos de forma individual, o el grafo que representa a la red (Figura \ref{Fig1d}).
+Los m\'etodos actuales para analizar las redes mencionadas se basan en el procesamiento directo de im\'agenes obtenidas a partir de microscop\'ia, y utilizando diversas t\'ecnicas como esqueletonizaci\'on (Figura \ref{Fig1c}), la transformada de Rad\'on o {\it template matching}. Esto permite identificar los filamentos de forma individual, o el grafo que representa a la red (Figura \ref{Fig1d}).
  %como tambi\'en pueden utilizarse una esqueletonizaci\'on de la misma (Figura \ref{Fig1c}), o la construcci\'on de un grafo (Figura \ref{Fig1d}), entre otras.
  % En todos estos casos, el objetivo radica en
 Con lo anterior, se puede proceder a la cuantificaci\'on de las propiedades de la red tales como n\'umero de filamentos, largo de estos, volumen, y curvatura entre otros. Estos m\'etodos, basados en la observaci\'on mediante microscop\'ia \'optica tienen como cota m\'axima de resoluci\'on el l\'imite de difracci\'on, $\lambda/2$. Donde $\lambda$ es la longitud de onda de la luz utilizada (o color). Este l\'imite establece que 2 objetos cuya distancia sea inferior a $\lambda/2$ no pueden ser diferenciados, conllevando a que dos partes del grafo cercanos puedan ser observadas como una, dificultando su estudio. Lo anterior es relevante para asociar las propiedades de la red a los v\'ertices del grafo extra\'ido, dando pie a la caracterizaci\'on del mismo (Figura \ref{Fig1e}).
@@ -191,7 +190,7 @@ Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos
 \subsection{Contribuci\'on}
 
 % Contribuci\'on:
-Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\'alisis automatizado de la estructura citoesqueletal, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
+Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\'alisis automatizado de estructuras de filamentos, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
 % pasar de Fig1d a Fig1e o Fig1f
 
 \section{Metodolog\'ia}
@@ -202,7 +201,7 @@ Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\
 Para la realizaci\'on del estudio propuesto se realizar\'a una recopilaci\'on detallada del estado del arte relacionado a la identificaci\'on de filamentos, con enfoque en soluciones que utilicen no s\'olo herramientas de visi\'on por computador.
 Por otra parte, el uso de software existente que provee pre-procesamiento de im\'agenes para la esqueletonizaci\'on y/o extracción de grafos que represente la estructura de la c\'elula, servir\'a de base para la obtenci\'on de ejemplos iniciales para realizar pruebas a la implementaci\'on del algoritmo. Estos programas presentan algunos de los problemas mencionados en las secciones anteriores, por lo que requerir\'an de adaptaciones para este trabajo.  
 
-El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otra.
+El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, como el largo, ancho, \'angulo de bifurcación y/o grosor, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otra.
 La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on.
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
@@ -211,7 +210,7 @@ Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita obten
 
 % COMO MEDIR LA CALIDAD
 
-Para la validaci\'on del algoritmo,se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontraran evaluadas por expertos, lo que establece el \textit{Gold Standard}, o criterio contra el cual se realizar\'a la validaci\'on, indicando la cantidad correcta de filamentos, cruces y/o solapamientos de estos e informaci\'on adicional respecto a la c\'elula representada por el grafo.
+Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontraran evaluadas por expertos, lo que establece el \textit{Gold Standard}, o criterio contra el cual se realizar\'a la validaci\'on, indicando la cantidad correcta de filamentos, cruces y/o solapamientos de estos e informaci\'on adicional respecto a la c\'elula representada por el grafo.
 Algunas de las im\'agenes reales provendr\'an de {\it papers} recopilados en la investigaci\'on del estado del arte, a modo de realizar una comparaci\'on con los resultados de los m\'etodos encontrados. Por su parte, las im\'agenes sint\'eticas permitir\'a medir la eficacia de la ponderaci\'on de propiedades respecto a casos iniciales de baja complejidad. Todo lo anterior permitir\'a establecer la cantidad de aciertos y errores del algoritmo.
 
 
