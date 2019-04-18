@@ -203,10 +203,16 @@ Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\
 Para la realizaci\'on del estudio propuesto se realizar\'a una recopilaci\'on detallada del estado del arte relacionado a la identificaci\'on de filamentos, con enfoque en soluciones que utilicen no s\'olo herramientas de visi\'on por computador.
 Por otra parte, el uso de software existente que provee pre-procesamiento de im\'agenes para la esqueletonizaci\'on y/o extracción de grafos que represente la estructura de la c\'elula, servir\'a de base para la obtenci\'on de ejemplos iniciales para realizar pruebas a la implementaci\'on del algoritmo. Estos programas presentan algunos de los problemas mencionados en las secciones anteriores, por lo que requerir\'an de adaptaciones para este trabajo.  
 
+%A su vez, se incluir\'an en el estado del arte problemas basados en recorrer grafos para determinar el o los mejores caminos dado uno o m\'as criterios. 
+%el {\it Path MTU Discovery} utilizado en redes para 
+
 El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, como el largo, ancho, \'angulo de bifurcación y/o grosor, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otra.
 La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on.
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
+
+La construcci\'on del planteamiento matem\'atico considerar\'a tambi\'en ideas extra\'idas de problemas no directamente relacionados con la extracci\'on de filamentos, pero que se basan en grafos para calcular caminos \'optimos. Por ejemplo, problemas de redes de computadores para el c\'alculo de enrutamiento utilizan grafos con pesos. En particular, la forma en que se determina el peso de un {\it link} puede servir de base para desarrollar la ponderaci\'on de pesos buscada en este trabajo. 
+A su vez, el uso de meta-heur\'isticas de inteligencia de enjambre como la colonia de hormigas puede servir para construir soluciones de forma din\'amica a medida que se recorre el grafo.
 
 Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita obtener resultados cuantitativos en base a lo planteado en la hip\'otesis sobre un grafo que represente una estructura citoesqueletal. 
 
@@ -219,11 +225,5 @@ Algunas de las im\'agenes reales provendr\'an de {\it papers} recopilados en la 
 %Dependiendo del avance del algoritmo, se llevara a cabo tambi\'en una comparaci\'on con m\'etodos similares existentes en la literatura. 
 \bibliographystyle{plain}
 \bibliography{references}
-
-% Comentarios
-%En general se ve ok, pero le falta mas profundidad y detalle. Mas especificamente:
-
-
-%Olvide comentarte sobre la referencia que envias. En terminos del procesamiento "tipico" esta bastante detallado, pero no hace supuestos del problema para mejorar la medicion (lo que propone define). Algo como eso es lo que ya tenemos
 
 \end{document}
