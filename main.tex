@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 %\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante grafos.}
-\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red resolviendo un problema de optimizaci\'on.}
+\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante optimizaci\'on.}
 %\author{Leonardo Pizarro}
 \date{}
 
@@ -78,14 +78,14 @@ La individualizaci\'on de filamentos permite cuantificar las propiedades de la r
 
 %Me fije que ahora explicas mas directamente set cover, pero la parte de la intuicion que relaciona con la imagen no es tan clara (en antecedentes y luego hipotesis).
 
-Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. Luego, como realizar la individualizaci\'on de filamentos puede ser categorizado en: basado en procesamiento de im\'agenes o como un problema de optimizaci\'on. 
+Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. La individualizaci\'on de filamentos puede ser categorizado en: basado en procesamiento de im\'agenes o como un problema de optimizaci\'on. 
 
 \medskip
 En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}. Para estos m\'etodos, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % describir alguno de estos papers 
 
 %que emplea la optimizaci\'on como enfoque,
-En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las medidas de distancia euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Cover}. En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que los par\'ametros utilizados por estas t\'ecnicas (\'angulos o  distancias ma\'aximas entre filamentos) son complejas de obtener de los expertos directamente. Sin embargo, una de sus ventajas es que automatizan la recuperaci\'on de informaci\'on e incluyendo una mayor cantidad de propiedades a cada arista. 
+En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las medidas de distancia euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Cover}. En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que los par\'ametros utilizados por estas t\'ecnicas (\'angulos o  distancias m\'aximas entre filamentos) son complejas de obtener de los expertos directamente. Sin embargo, una de sus ventajas es que automatizan la recuperaci\'on de informaci\'on incluyendo una mayor cantidad de propiedades a cada arista. 
 
 %representa un camino en este grafo, y los conjuntos de caminos 
 %para realizar un an\'alisis del grafo obtenido~\cite{breuer2015define}. % Describir mas los papers de estas secciones  
@@ -97,7 +97,7 @@ A modo de ejemplo, el programa \texttt{DeFine} desarrollado en \cite{breuer2015d
 Este problema particular es llamado {\it Filament Covering Problem} (FCP) y los autores demuestran que es NP-Hard, por lo que proponen un algoritmo de aproximaci\'on mediante \textit{Set Cover}, cuyo objetivo es que cada arista pertenezca al menos a un conjunto. La definici\'on de {\it Set Cover} es:
 
 \begin{quote}
-Dado un conjunto de elementos, denominado universo, y $n$ conjuntos cuya unión comprende el universo, el {\it Set Cover Problem} consiste en identificar el menor n\'umero de conjuntos cuya unión aun contiene todos los elementos del universo.
+Dado un conjunto de elementos, denominado universo, y $n$ conjuntos cuya unión comprende el universo, el {\it Set Cover Problem} consiste en identificar el menor n\'umero de conjuntos cuya unión a\'un contiene todos los elementos del universo.
 \end{quote}
 
 La adaptaci\'on a lo definido por {\it FCP} es: 
@@ -133,7 +133,7 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
 \end{figure*}
 
 %resolucion, cantidad parametros, descriptores, costo computacional
-En resumen, el problema de identificar filamentos en imagenes de microscop\'ia esta limitado por la resoluci\'on, y los problemas de m\'ultiples par\'ametros a ajustar, para los m\'etodos de la primera categoria, el costo computacional en la segunda categor\'ia y falta de descriptores cuantitativos en ambas. La revisi\'on bibliogr\'afica da cuenta tambi\'en de pocas herramientas disponibles. Todo lo anterior implica que parte del an\'alisis deba ser manual, lo que para grandes cantidades de datos, hace los estudios m\'as propensos a errores. 
+En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia esta limitado por la resoluci\'on, y los problemas de m\'ultiples par\'ametros a ajustar, para los m\'etodos basados en procesamiento de im\'agenes, el costo computacional en los m\'etodos basados en optimizaci\'on, y falta de descriptores cuantitativos en ambas. La revisi\'on bibliogr\'afica da cuenta tambi\'en de pocas herramientas disponibles. Todo lo anterior implica que parte del an\'alisis deba ser manual, lo que para grandes cantidades de datos, hace los estudios m\'as propensos a errores. 
 %La falta de herramientas analíticas para cuantificar las estructuras sigue siendo un cuello de botella, ya que el análisis manual de grandes conjuntos de datos requiere una gran cantidad de tiempo y son propensos a sesgos y errores.
 %Por otra parte, la soluci\'on a problemas de superposici\'on se soluciona mediante la sintonizaci\'on de par\'ametros, los que var\'ian dependiendo de la c\'elula observada. En el caso del uso de \textit{thinning} en una imagen, la informaci\'on respecto al grosor de la estructura se pierde.
 
