@@ -109,7 +109,7 @@ Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, d
 
 Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. El subconjunto de caminos puede obtenerse con la heur\'istica de recorrer el grafo por su anchura ({\it Breadth-First Search}) deteniendose al momento que el \'angulo entre aristas supere 60$°$, o de caminos generados a partir de 100 \'arboles de expansi\'on m\'inima aleatoria ({\it RMST}), aportando cada uno de los 100 con $N(N-1)/2$ caminos no triviales y sin direcci\'on. 
 
-Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. 
+Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. Cabe destacar que el {\it FCP} s\'olo utiliza 2 caracter\'isticas para describir los segmentos de los filamentos, siendo el \'angulo entre aristas usado en la etapa de selecci\'on de subconjuntos de caminos, y el ancho, empleado para describir el peso de las aristas.  
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
 % Aquello permitir\'ia pasar de Fig1d a Fig2b por ejemplo
 
@@ -141,16 +141,16 @@ En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia
 
 \section{Preguntas de Investigaci\'on}
 
-Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas. Esto nos gu\'ia hacia la pregunta:
+Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas o algoritmos de aproximaci\'on. 
+
+Esto nos gu\'ia hacia la pregunta:
 %El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
 
 % costo computacional de m\'etodos de optimizaci\'on es abordado con algoritmos de aproximación o heurísticas
 % Solucion actual propuesta en Define aborda el recorrido de grafos considerando como peso solo 1 valor que representa una caracteristica de la arista, 
 % pregunta es si se puede determinar la cantidad de filamentos utilizando un peso que agrupe/pondere varias caracteristicas
 \smallskip
-
-
-¿Es posible determinar correctamente la cantidad de filamentos, ponderando m\'ultiples caracter\'isticas como el largo, ancho, \'angulo de bifurcaci\'on y/o direcci\'on, en las aristas del grafo que representa la red,  
+¿Es posible determinar correctamente la cantidad de filamentos, ponderando en la asignaci\'on de pesos m\'ultiples caracter\'isticas como el largo, ancho, \'angulo de bifurcaci\'on y/o direcci\'on, 
 %(geometricos comunmente)
 % Entre las investigaciones y herramientas existentes derivadas de los mismos, 
 %- overlap, intensidad, fragmentación
@@ -169,11 +169,13 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 
 \section{Hipótesis, Objetivos y Contribuci\'on}
 \label{hipotesis}
-Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, obtenido desde una imagen de microscop\'ia con t\'ecnicas descritas en la literatura, y utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
 
 Para validar esta hip\'otesis, se propone realizar los siguientes objetivos:
 \subsection{Objetivo General}
-Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo, evaluando la variaci\'on en el resultado con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, grosor.
+
+
+Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo, evaluando la variaci\'on en el resultado con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, \'angulo de bifurcaci\'on y/o direcci\'on.
 %y que incorpore la informaci\'on {\it a priori} disponible
 
 \subsection{Objetivos Espec\'ificos}
