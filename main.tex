@@ -88,12 +88,12 @@ En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la r
 En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las medidas de distancia euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Cover}. En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que los par\'ametros utilizados por estas t\'ecnicas (\'angulos o  distancias m\'aximas entre filamentos) son complejas de obtener de los expertos directamente. Sin embargo, una de sus ventajas es que automatizan la recuperaci\'on de informaci\'on incluyendo una mayor cantidad de propiedades a cada arista. 
 
 %representa un camino en este grafo, y los conjuntos de caminos 
-%para realizar un an\'alisis del grafo obtenido~\cite{breuer2015define}. % Describir mas los papers de estas secciones  
 \medskip
 %Todos estos enfoques, cuya entrada principal de datos son las im\'agenes etiquetadas a trav\'es de marcadores fluorescentes, 
 % basados en grafos
 
-A modo de ejemplo, el programa \texttt{DeFine} desarrollado en \cite{breuer2015define} describe el problema de identificaci\'on de filamentos como un problema de b\'usqueda de caminos, es decir, como un problema del tipo {\it Path Cover}. Se define el peso de cada segmento/arista por un c\'alculo de {\it aspereza}, asociada al ancho o intensidad de la arista, un conjunto de estas, o tambi\'en puede ser calculado respecto al \'angulo entre aristas.
+A modo de ejemplo, el programa \texttt{DeFine} desarrollado en \cite{breuer2015define} describe el problema de identificaci\'on de filamentos como un problema de b\'usqueda de caminos, es decir, como un problema del tipo {\it Path Cover}. Se define el peso de cada segmento/arista por un c\'alculo de {\it aspereza}, asociada al ancho o intensidad de la arista o un conjunto de estas.
+%, o tambi\'en puede ser calculado respecto al \'angulo entre aristas.
 Este problema particular es llamado {\it Filament Covering Problem} (FCP) y los autores demuestran que es NP-Hard, por lo que proponen un algoritmo de aproximaci\'on mediante \textit{Set Cover}, cuyo objetivo es que cada arista pertenezca al menos a un conjunto. La definici\'on de {\it Set Cover} es:
 
 \begin{quote}
@@ -107,7 +107,9 @@ Sea el universo $U$ conformado por las aristas del grafo, y un conjunto $S$, con
 Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, dependiendo de la forma en que se calcula la aspereza) tal que cada elemento en $U$ este cubierto al menos una vez.
 \end{quote}
 
-Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. 
+Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. El subconjunto de caminos puede obtenerse con la heur\'istica de recorrer el grafo por su anchura ({\it Breadth-First Search}) deteniendose al momento que el \'angulo entre aristas supere 60$°$, o de caminos generados a partir de 100 \'arboles de expansi\'on m\'inima aleatoria ({\it RMST}), aportando cada uno de los 100 con $N(N-1)/2$ caminos no triviales y sin direcci\'on. 
+
+Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. 
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
 % Aquello permitir\'ia pasar de Fig1d a Fig2b por ejemplo
 
@@ -139,18 +141,21 @@ En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia
 
 \section{Preguntas de Investigaci\'on}
 
-%De los algoritmos mencionados en la secci\'on \ref{contexto}, 
-%los que se fundamentan en la recuperaci\'on de filamentos en base a la imagen, 
- %Lo anterior, sumado a 
-%La existencia de algoritmos para la extracci\'on de redes a partir de una imagen, que depende de menor manera de la sintonizaci\'on de par\'ametros, gu\'ia hacia la pregunta:
-% reconstrucci\'on de filamentos OLD
-Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional. Esto nos gu\'ia hacia la pregunta:
+Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas. Esto nos gu\'ia hacia la pregunta:
+%El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
 
+% costo computacional de m\'etodos de optimizaci\'on es abordado con algoritmos de aproximación o heurísticas
+% Solucion actual propuesta en Define aborda el recorrido de grafos considerando como peso solo 1 valor que representa una caracteristica de la arista, 
+% pregunta es si se puede determinar la cantidad de filamentos utilizando un peso que agrupe/pondere varias caracteristicas
 \smallskip
-Recorriendo el grafo que representa, inicialmente, la estructura de una c\'elula, ¿es posible determinar correctamente la cantidad de filamentos (estructuras alargadas), utilizando un enfoque de optimizaci\'on, mediante la asociaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, grosor, \'angulo de bifurcaci\'on y/o direcci\'on, entre otros, a las aristas del grafo ? 
+
+
+¿Es posible determinar correctamente la cantidad de filamentos, ponderando m\'ultiples caracter\'isticas como el largo, ancho, \'angulo de bifurcaci\'on y/o direcci\'on, en las aristas del grafo que representa la red,  
 %(geometricos comunmente)
 % Entre las investigaciones y herramientas existentes derivadas de los mismos, 
 %- overlap, intensidad, fragmentación
+
+
 
 A aquella pregunta, se debe agregar que existe informaci\'on \textit{a priori}, indicada por el tipo de estructura observada, la cual restringe los comportamientos posibles de la red. Por ejemplo, los filamentos de prote\'ina actina no se pegan entre s\'i, formando estructuras sin ciclos, mientras que el ret\'iculo endoplasm\'atico (organelo celular encargado principalmente de la s\'intesis de prote\'inas) si presenta ciclos. Estas condiciones pueden aportar limites m\'as acotados a algunos de los criterios de cuantificaci\'on y es conocimiento disponible previo a la observaci\'on en el microscopio.
 Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde a reglas emp\'iricas, que tambi\'en deben ser consideradas durante el an\'alisis.
@@ -158,22 +163,13 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 %El ingreso de esta informaci\'on 
 %- haria mas enfasis en los metodos actuales, fuera de tener muchos parametros que no hacen (o no hacen bien). Como por ejemplo , integrar el uso de informacion a priori del sistema.
 %- tampoco mencionas la dificultad de incorporar reglas empiricas de que es "a priori"
-
 %acelerando el an\'alisis.
 %length, orientation, position, width
-
 % Metricas usadas solo algunos: Donde esta el paper? -> DeFine usa 1, MCerda usa 2 distancias, Asgardh2018 usa angulos, grossor, distancia 
 
 \section{Hipótesis, Objetivos y Contribuci\'on}
 \label{hipotesis}
-%- aclarar multiples metricas -> cambiado a propiedades
-% Definir objetivo general y especificos
-
-% En hipotesis todavia hablas de multiples metricas/criterios, siguiendo al revisor esos tiene que precisarlo mas (puedes hablar de distancia, angulo y restricciones como si se permiten bifurcaciones o no, no es necesario que sean todas).
-
 Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
-
-%aproximado de {\it Set Covering}...
 
 Para validar esta hip\'otesis, se propone realizar los siguientes objetivos:
 \subsection{Objetivo General}
@@ -218,7 +214,7 @@ Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita obten
 
 % COMO MEDIR LA CALIDAD
 
-Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontraran evaluadas por expertos, lo que establece el \textit{Gold Standard}, o criterio contra el cual se realizar\'a la validaci\'on, indicando la cantidad correcta de filamentos, cruces y/o solapamientos de estos e informaci\'on adicional respecto a la c\'elula representada por el grafo.
+Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontrar\'an evaluadas por expertos, lo que establece el \textit{Gold Standard}, o criterio contra el cual se realizar\'a la validaci\'on, indicando la cantidad correcta de filamentos, cruces y/o solapamientos de estos e informaci\'on adicional respecto a la c\'elula representada por el grafo.
 Algunas de las im\'agenes reales provendr\'an de {\it papers} recopilados en la investigaci\'on del estado del arte, a modo de realizar una comparaci\'on con los resultados de los m\'etodos encontrados. Por su parte, las im\'agenes sint\'eticas permitir\'a medir la eficacia de la ponderaci\'on de propiedades respecto a casos iniciales de baja complejidad. Todo lo anterior permitir\'a establecer la cantidad de aciertos y errores del algoritmo.
 
 
