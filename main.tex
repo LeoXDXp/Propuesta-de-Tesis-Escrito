@@ -72,6 +72,7 @@ La individualizaci\'on de filamentos permite cuantificar las propiedades de la r
  
  
 \section{Antecedentes}
+\label{Antecedentes}
 % Se sugiere agregar una sección para “Antecedentes” en donde se puedan describir conceptos relevantes en este trabajo. Por ejemplo, en la hipótesis se habla de múltiples métricas. Sin embargo no queda claro a qué se refiere ello. Estas definiciones podrían estar definidas dentro de “Antecedentes”
 % En la sección de Antecedentes también se podrían describir los trabajos actuales relacionados con el problema.
 % Indicar cuál es la intuición para relacionar un problema de Set Covering con extracción de filamentos. Sería bueno describir este punto en la propuesta. La definición de Set-Covering y su relación con este problema también podría estar en Antecedentes.
@@ -141,20 +142,20 @@ En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia
 
 \section{Preguntas de Investigaci\'on}
 
-Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, pero para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas o algoritmos de aproximaci\'on. 
-
-Esto nos gu\'ia hacia la pregunta:
+Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, sin embargo para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas o algoritmos de aproximaci\'on. 
+En particular, el m\'etodo {\it FCP} presentado en la secci\'on \ref{Antecedentes}, utiliza s\'olo el ancho como caracter\'istica en la etapa de asignaci\'on de pesos a las aristas del grafo. En la etapa de selecci\'on del subconjunto de caminos, el mismo m\'etodo desarrolla una heur\'istica que utiliza {\it BFS} en conjunto con otra caracter\'istica, el \'angulo entre aristas.
+Esto nos permite establecer la pregunta:
 %El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
+%2-4-26
+\smallskip
+¿Es posible determinar correctamente la cantidad de filamentos, utilizando una combinaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, ángulo de bifurcación, curvatura o dirección, en la asignaci\'on de pesos como en la selecci\'on del subconjunto de caminos?
 
 % costo computacional de m\'etodos de optimizaci\'on es abordado con algoritmos de aproximación o heurísticas
 % Solucion actual propuesta en Define aborda el recorrido de grafos considerando como peso solo 1 valor que representa una caracteristica de la arista, 
 % pregunta es si se puede determinar la cantidad de filamentos utilizando un peso que agrupe/pondere varias caracteristicas
-\smallskip
-¿Es posible determinar correctamente la cantidad de filamentos, ponderando en la asignaci\'on de pesos m\'ultiples caracter\'isticas como el largo, ancho, \'angulo de bifurcaci\'on y/o direcci\'on, 
 %(geometricos comunmente)
 % Entre las investigaciones y herramientas existentes derivadas de los mismos, 
 %- overlap, intensidad, fragmentación
-
 
 
 A aquella pregunta, se debe agregar que existe informaci\'on \textit{a priori}, indicada por el tipo de estructura observada, la cual restringe los comportamientos posibles de la red. Por ejemplo, los filamentos de prote\'ina actina no se pegan entre s\'i, formando estructuras sin ciclos, mientras que el ret\'iculo endoplasm\'atico (organelo celular encargado principalmente de la s\'intesis de prote\'inas) si presenta ciclos. Estas condiciones pueden aportar limites m\'as acotados a algunos de los criterios de cuantificaci\'on y es conocimiento disponible previo a la observaci\'on en el microscopio.
