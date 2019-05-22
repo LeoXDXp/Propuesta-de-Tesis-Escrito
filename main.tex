@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 
 %\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante grafos.}
-\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante optimizaci\'on.}
+\title{Propuesta de Tesis: Individualizaci\'on de filamentos en una red mediante optimizaci\'on}
 %\author{Leonardo Pizarro}
 \date{}
 
@@ -85,7 +85,6 @@ Existen investigaciones en la literatura que apuntan a las distintas etapas de e
 En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}. Para estos m\'etodos, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % describir alguno de estos papers 
 
-%que emplea la optimizaci\'on como enfoque,
 En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las medidas de distancia euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Cover}. En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que los par\'ametros utilizados por estas t\'ecnicas (\'angulos o  distancias m\'aximas entre filamentos) son complejas de obtener de los expertos directamente. Sin embargo, una de sus ventajas es que automatizan la recuperaci\'on de informaci\'on incluyendo una mayor cantidad de propiedades a cada arista. 
 
 %representa un camino en este grafo, y los conjuntos de caminos 
@@ -132,7 +131,7 @@ En ambas categor\'ias, las cr\'iticas m\'as repetidas en los trabajos del \'area
         \caption{Visualizaci\'on de otro resultado posible de individualizaci\'on, permitiendo filamentos m\'as complejos.}
         \label{Fig2b}
     \end{subfigure}
-	\caption{Posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada arista del grafo, como el de la figura \ref{Fig1d}, un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo.Al plantearlo como un problema de optimizaci\'on, la ponderaci\'on y otras restricciones, entregar\'an resultados como la imagen \ref{Fig2a} o \ref{Fig2b}, expresado gr\'aficamente mediante gradiente de colores. Fuente: Elaboraci\'on propia}
+	\caption{Posibles resultados de la identificaci\'on de filamentos. El resultado esperado de esta investigaci\'on es asociar a cada arista del grafo, como el de la figura \ref{Fig1d}, un peso que pondere diversos criterios como \'angulo de bifurcaci\'on del filamento, grosor, ancho y/o largo. Al plantearlo como un problema de optimizaci\'on, la ponderaci\'on y otras restricciones, entregar\'an resultados como la imagen \ref{Fig2a} o \ref{Fig2b}, expresado gr\'aficamente mediante gradiente de colores. Fuente: Elaboraci\'on propia}
 \end{figure*}
 
 %resolucion, cantidad parametros, descriptores, costo computacional
@@ -143,12 +142,13 @@ En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia
 \section{Preguntas de Investigaci\'on}
 
 Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, sin embargo para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas o algoritmos de aproximaci\'on. 
-En particular, el m\'etodo {\it FCP} presentado en la secci\'on \ref{Antecedentes}, utiliza s\'olo el ancho como caracter\'istica en la etapa de asignaci\'on de pesos a las aristas del grafo. En la etapa de selecci\'on del subconjunto de caminos, el mismo m\'etodo desarrolla una heur\'istica que utiliza {\it BFS} en conjunto con otra caracter\'istica, el \'angulo entre aristas.
+En particular, el m\'etodo {\it FCP} presentado en la secci\'on \ref{Antecedentes}, utiliza s\'olo el ancho como caracter\'istica en la etapa de asignaci\'on de pesos a las aristas del grafo, lo que es usado en la funci\'on de minimizaci\'on del problema de optimizaci\'on planteado por ellos. En la etapa de selecci\'on del subconjunto de caminos, el mismo m\'etodo desarrolla una heur\'istica que utiliza {\it BFS} en conjunto con otra caracter\'istica, el \'angulo entre aristas.
 Esto nos permite establecer la pregunta:
 %El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
 %2-4-26
 \smallskip
-¿Es posible determinar correctamente la cantidad de filamentos, utilizando una combinaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, ángulo de bifurcación, curvatura o dirección, en la asignaci\'on de pesos como en la selecci\'on del subconjunto de caminos?
+¿Es posible determinar correctamente la cantidad de filamentos, desarrollando un modelo de optimizaci\'on que utilice una combinaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, ángulo de bifurcación, curvatura o dirección, en la asignaci\'on de pesos como en la selecci\'on del subconjunto de caminos?
+\smallskip
 
 % costo computacional de m\'etodos de optimizaci\'on es abordado con algoritmos de aproximación o heurísticas
 % Solucion actual propuesta en Define aborda el recorrido de grafos considerando como peso solo 1 valor que representa una caracteristica de la arista, 
@@ -157,12 +157,9 @@ Esto nos permite establecer la pregunta:
 % Entre las investigaciones y herramientas existentes derivadas de los mismos, 
 %- overlap, intensidad, fragmentación
 
-
-A aquella pregunta, se debe agregar que existe informaci\'on \textit{a priori}, indicada por el tipo de estructura observada, la cual restringe los comportamientos posibles de la red. Por ejemplo, los filamentos de prote\'ina actina no se pegan entre s\'i, formando estructuras sin ciclos, mientras que el ret\'iculo endoplasm\'atico (organelo celular encargado principalmente de la s\'intesis de prote\'inas) si presenta ciclos. Estas condiciones pueden aportar limites m\'as acotados a algunos de los criterios de cuantificaci\'on y es conocimiento disponible previo a la observaci\'on en el microscopio.
-Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde a reglas emp\'iricas, que tambi\'en deben ser consideradas durante el an\'alisis.
+A aquella pregunta, se debe agregar que existe informaci\'on \textit{a priori}, indicada por el tipo de estructura observada, la cual restringe los comportamientos posibles de la red. Por ejemplo, los filamentos de prote\'ina actina no se pegan entre s\'i, formando estructuras sin ciclos, mientras que el ret\'iculo endoplasm\'atico (organelo celular encargado principalmente de la s\'intesis de prote\'inas) si presenta ciclos. Estas condiciones pueden aportar limites m\'as acotados a algunos de los criterios de cuantificaci\'on y es conocimiento disponible previo a la observaci\'on en el microscopio. Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde a reglas emp\'iricas, que tambi\'en deben ser consideradas durante el an\'alisis.
 
 %El ingreso de esta informaci\'on 
-%- haria mas enfasis en los metodos actuales, fuera de tener muchos parametros que no hacen (o no hacen bien). Como por ejemplo , integrar el uso de informacion a priori del sistema.
 %- tampoco mencionas la dificultad de incorporar reglas empiricas de que es "a priori"
 %acelerando el an\'alisis.
 %length, orientation, position, width
@@ -170,19 +167,20 @@ Es importante destacar que alguna de la informaci\'on {\it a priori} corresponde
 
 \section{Hipótesis, Objetivos y Contribuci\'on}
 \label{hipotesis}
-Se plantea como hip\'otesis que a partir de un grafo que representa la extracci\'on de una red de filamentos, obtenido desde una imagen de microscop\'ia con t\'ecnicas descritas en la literatura, y utilizando caracter\'isticas de los filamentos como largo, ancho, \'angulo de bifurcaci\'on y/o orientaci\'on, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un problema de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo que representa una red de filamentos, obtenido desde una imagen de microscop\'ia con t\'ecnicas descritas en la literatura, y utilizando una combinaci\'on de caracter\'isticas de los segmentos de filamentos como largo, ancho, \'angulo de bifurcaci\'on o curvatura, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un modelo de optimizaci\'on.
 
 Para validar esta hip\'otesis, se propone realizar los siguientes objetivos:
 \subsection{Objetivo General}
+Desarrollar un modelo de optimizaci\'on para la individualizaci\'on de filamentos a partir de un grafo representativo de la red de filamentos, evaluando la variaci\'on en el resultado 
 
 
-Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos mediante la implementaci\'on de un algoritmo, evaluando la variaci\'on en el resultado con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, \'angulo de bifurcaci\'on y/o direcci\'on.
+con distintas ponderaciones entre las propiedades de cada segmento de filamento, como el ancho, largo, \'angulo de bifurcaci\'on y/o direcci\'on.
 %y que incorpore la informaci\'on {\it a priori} disponible
 
 \subsection{Objetivos Espec\'ificos}
 \begin{itemize}
-    \item Generar una formulaci\'on matem\'atica de un problema de optimizaci\'on para la identificaci\'on de filamentos. 
-    \item Implementar un algoritmo que entregue como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
+    \item Generar una formulaci\'on matem\'atica de un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo representativo de la red de filamentos. 
+    \item Implementar un algoritmo que resuelva el modelo de optimizaci\'on, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
     \item Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen una neurona, una bacteria y una c\'elula eucariota de planta. 
     
     %una soluci\'on exacta o aproximada respecto a la individualizaci\'on, dependiendo de la complejidad computacional del problema. 
@@ -191,7 +189,7 @@ Resolver un problema de optimizaci\'on para la individualizaci\'on de filamentos
 \subsection{Contribuci\'on}
 
 % Contribuci\'on:
-Como resultado de los objetivos planteados, se obtendr\'a una herramienta el an\'alisis automatizado de estructuras de filamentos, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
+Como resultado de los objetivos planteados, se obtendr\'a una herramienta para el an\'alisis automatizado de estructuras de filamentos, lo que permitir\'ia mejorar el seguimiento de procesos din\'amicos o la identificaci\'on de procesos patol\'ogicos de forma autom\'atica.
 % pasar de Fig1d a Fig2a o Fig2b
 
 \section{Metodolog\'ia}
@@ -205,19 +203,17 @@ Por otra parte, el uso de software existente que provee pre-procesamiento de im\
 %A su vez, se incluir\'an en el estado del arte problemas basados en recorrer grafos para determinar el o los mejores caminos dado uno o m\'as criterios. 
 %el {\it Path MTU Discovery} utilizado en redes para 
 
-El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, como el largo, ancho, \'angulo de bifurcación y/o grosor, las que permitan identificar a los filamentos que componen la red planteando un problema de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o se traslapa con otra.
-La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on.
+El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, como el largo, ancho, \'angulo de bifurcación y/o grosor, las que permitan identificar a los filamentos que componen la red a trav\'es del planteamiento de un modelo de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o si se traslapa con otra.
+La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on, que se ver\'a influido por el n\'umero de nodos en el grafo. En caso de que las los segmentos/aristas que constituyen el dominio de b\'usqueda para el modelo de optimizaci\'on sea demasiado grande, ser\'a necesario definir una heur\'istica que permita acotarlo.
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
 
-La construcci\'on del planteamiento matem\'atico considerar\'a tambi\'en ideas extra\'idas de problemas no directamente relacionados con la extracci\'on de filamentos, pero que se basan en grafos para calcular caminos \'optimos. Por ejemplo, problemas de redes de computadores para el c\'alculo de enrutamiento utilizan grafos con pesos. En particular, la forma en que se determina el peso de un {\it link} puede servir de base para desarrollar la ponderaci\'on de pesos buscada en este trabajo. 
-A su vez, el uso de meta-heur\'isticas de inteligencia de enjambre como la colonia de hormigas puede servir para construir soluciones de forma din\'amica a medida que se recorre el grafo.
-
-Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita obtener resultados cuantitativos en base a lo planteado en la hip\'otesis sobre un grafo que represente una estructura citoesqueletal. 
+La construcci\'on del planteamiento matem\'atico considerar\'a tambi\'en ideas extra\'idas de problemas no directamente relacionados con la extracci\'on de filamentos, pero que se basan en grafos para calcular caminos \'optimos. Por ejemplo, problemas de redes de computadores para el c\'alculo de enrutamiento utilizan grafos con pesos. En particular, la forma en que se determina el peso de un {\it link} puede servir de base para desarrollar la ponderaci\'on de pesos buscada en este trabajo. A su vez, el uso de meta-heur\'isticas de inteligencia de enjambre como la colonia de hormigas puede servir para construir soluciones de forma din\'amica a medida que se evaluan diferentes aristas del grafo.
+Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita resolver el modelo de optimizaci\'on, obteniendo resultados cuantitativos en base a lo planteado en la hip\'otesis sobre un grafo que represente una estructura citoesqueletal. 
 
 % COMO MEDIR LA CALIDAD
-
-Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontrar\'an evaluadas por expertos, lo que establece el \textit{Gold Standard}, que es en este caso la identificaci\'on manual de filamentos realizada por el experto contra la cual se realizar\'a la validaci\'on, dado que indica la cantidad correcta de filamentos, cruces y/o solapamientos.
+% Agregar test de hipotesis Kolgomorov Student t
+Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontrar\'an evaluadas por expertos, lo que establece el \textit{Gold Standard}, que es en este caso la identificaci\'on manual de filamentos realizada por el o los expertos contra la cual se realizar\'a la validaci\'on, dado que indica la cantidad correcta de filamentos, cruces y/o solapamientos.
 Algunas de las im\'agenes reales provendr\'an de {\it papers} recopilados en la investigaci\'on del estado del arte, a modo de realizar una comparaci\'on con los resultados de los m\'etodos encontrados. Por su parte, las im\'agenes sint\'eticas permitir\'a medir la eficacia de la ponderaci\'on de propiedades respecto a casos iniciales de baja complejidad. Todo lo anterior permitir\'a establecer la cantidad de aciertos y errores del algoritmo.
 
 
