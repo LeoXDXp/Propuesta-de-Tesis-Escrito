@@ -9,6 +9,7 @@
 \usepackage{natbib}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{gensymb}
 \renewcommand\refname{Referencias}
 \begin{document}
 
@@ -107,7 +108,7 @@ Sea el universo $U$ conformado por las aristas del grafo, y un conjunto $S$, con
 Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, dependiendo de la forma en que se calcula la aspereza) tal que cada elemento en $U$ este cubierto al menos una vez.
 \end{quote}
 
-Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. El subconjunto de caminos puede obtenerse con la heur\'istica de recorrer el grafo por su anchura ({\it Breadth-First Search}) deteniendose al momento que el \'angulo entre aristas supere 60$°$, o de caminos generados a partir de 100 \'arboles de expansi\'on m\'inima aleatoria ({\it RMST}), aportando cada uno de los 100 con $N(N-1)/2$ caminos no triviales y sin direcci\'on. 
+Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. El subconjunto de caminos puede obtenerse con la heur\'istica de recorrer el grafo por su anchura ({\it Breadth-First Search}), deteni\'endose al momento que el \'angulo entre aristas supere 60 \degree, o de caminos generados a partir de 100 \'arboles de expansi\'on m\'inima aleatoria ({\it RMST}), aportando cada uno de los 100 con $N(N-1)/2$ caminos no triviales y sin direcci\'on. 
 
 Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. Cabe destacar que el {\it FCP} s\'olo utiliza 2 caracter\'isticas para describir los segmentos de los filamentos, siendo el \'angulo entre aristas usado en la etapa de selecci\'on de subconjuntos de caminos, y el ancho, empleado para describir el peso de las aristas.  
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
@@ -144,6 +145,7 @@ En resumen, el problema de identificar filamentos en im\'agenes de microscop\'ia
 Como se ha presentado, los m\'etodos de individualizaci\'on de filamentos que s\'olo usan herramientas de procesamiento de im\'agenes, pueden representar la red a trav\'es de los filamentos que la conforman, sin embargo para el conteo de descriptores cuantitativos requieren de m\'ultiples par\'ametros. Por otra parte los m\'etodos de optimizaci\'on permiten reducir los par\'ametros, pero con un alto costo computacional, el que puede ser abordado con el uso de heur\'isticas o algoritmos de aproximaci\'on. 
 En particular, el m\'etodo {\it FCP} presentado en la secci\'on \ref{Antecedentes}, utiliza s\'olo el ancho como caracter\'istica en la etapa de asignaci\'on de pesos a las aristas del grafo, lo que es usado en la funci\'on de minimizaci\'on del problema de optimizaci\'on planteado por ellos. En la etapa de selecci\'on del subconjunto de caminos, el mismo m\'etodo desarrolla una heur\'istica que utiliza {\it BFS} en conjunto con otra caracter\'istica, el \'angulo entre aristas.
 Esto nos permite establecer la pregunta:
+
 %El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
 %2-4-26
 \smallskip
@@ -200,7 +202,7 @@ Por otra parte, el uso de software existente que provee pre-procesamiento de im\
 %A su vez, se incluir\'an en el estado del arte problemas basados en recorrer grafos para determinar el o los mejores caminos dado uno o m\'as criterios. 
 %el {\it Path MTU Discovery} utilizado en redes para 
 
-El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la ponderaci\'on de m\'ultiples propiedades, como el largo, ancho, \'angulo de bifurcación y/o grosor, las que permitan identificar a los filamentos que componen la red a trav\'es del planteamiento de un modelo de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o si se traslapa con otra.
+El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la combinaci\'on de propiedades como el largo, ancho, \'angulo de bifurcación, curvatura o direcci\'on, las que permitan identificar a los filamentos que componen la red a trav\'es del planteamiento de un modelo de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o si se traslapa con otra.
 La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on, que se ver\'a influido por el n\'umero de nodos en el grafo. En caso de que las los segmentos/aristas que constituyen el dominio de b\'usqueda para el modelo de optimizaci\'on sea demasiado grande, ser\'a necesario definir una heur\'istica que permita acotarlo.
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
