@@ -83,7 +83,7 @@ La individualizaci\'on de filamentos permite cuantificar las propiedades de la r
 Existen investigaciones en la literatura que apuntan a las distintas etapas de este problema, las que tienen en com\'un el uso de t\'ecnicas del \'area de procesamiento de im\'agenes para el tratamiento inicial de la imagen de microscop\'ia. La individualizaci\'on de filamentos puede ser categorizado en: basado en procesamiento de im\'agenes o como un problema de optimizaci\'on. 
 
 \medskip
-En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}. Para estos m\'etodos, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
+En la primera categor\'ia se encuentran enfoques asociados al an\'alisis de la reconstrucci\'on de filamentos en base a sus segmentos \cite{zhang2017extracting}, o relacionados a la extracci\'on de cada uno de los filamentos que conforman la red (\textit{Individual Fiber Segmentation}) a partir de una imagen \cite{doi:10.1021/ma502264c}\cite{boudaoud2014fibriltool}\cite{lichtenstein2003quantitative}\cite{alioscha2016robust}\cite{xu2015soax}. Para estos m\'etodos, se han indicado como cr\'iticas la dificultad para identificar correctamente un filamento de otro, en los casos de  superposici\'on, fragmentaci\'on, o variaciones de intensidad en la imagen.
 % describir alguno de estos papers 
 
 En la segunda categor\'ia, \cite{cerda2014geometrical} plantea la identificaci\'on de segmentos de filamentos como un problema de asignaci\'on, utilizando las medidas de distancia euclidiana y angular como restricciones, y el algoritmo h\'ungaro para su resoluci\'on. En la misma categor\'ia, \cite{breuer2015define} realiza la asociaci\'on de la red con un grafo no dirigido con pesos, en el que cada filamento es equivalente a un camino en el grafo. Esto permite que la b\'usqueda e individualizaci\'on de filamentos, con un segmento de filamento representado por una arista del grafo, sumado a las restricciones que plantea el autor, sea tratado como un problema de {\it Set Cover}. En el caso de los m\'etodos de la segunda categor\'ia, la mayor cr\'itica es su costo computacional alto, lo que limita en parte aquel enfoque. Se debe agregar que los par\'ametros utilizados por estas t\'ecnicas (\'angulos o  distancias m\'aximas entre filamentos) son complejas de obtener de los expertos directamente. Sin embargo, una de sus ventajas es que automatizan la recuperaci\'on de informaci\'on incluyendo una mayor cantidad de propiedades a cada arista. 
@@ -110,7 +110,7 @@ Encontrar un subconjunto $S_{set} \subseteq S$ con costo m\'inimo (o promedio, d
 
 Con la demostraci\'on de que FCP es NP-Hard, dado que la cantidad de caminos crece de forma exponencial respecto al n\'umero de nodos, los autores de \cite{breuer2015define} plantean la elecci\'on de un subconjunto de caminos, con los que pueden expresar el problema de {\it Set Cover} como algoritmo de aproximaci\'on lineal fraccional binario. El subconjunto de caminos puede obtenerse con la heur\'istica de recorrer el grafo por su anchura ({\it Breadth-First Search}), deteni\'endose al momento que el \'angulo entre aristas supere 60 \degree, o de caminos generados a partir de 100 \'arboles de expansi\'on m\'inima aleatoria ({\it RMST}), aportando cada uno de los 100 con $N(N-1)/2$ caminos no triviales y sin direcci\'on. 
 
-Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. Cabe destacar que el {\it FCP} s\'olo utiliza 2 caracter\'isticas para describir los segmentos de los filamentos, siendo el \'angulo entre aristas usado en la etapa de selecci\'on de subconjuntos de caminos, y el ancho, empleado para describir el peso de las aristas.  
+Este enfoque faculta que al tener un grafo que representa la red de filamentos, como en la figura \ref{Fig1d}, sea posible llegar a resultados como los que aparecen en las figuras \ref{Fig2a} o \ref{Fig2b} a trav\'es de la asignaci\'on de pesos a la aristas, y de restricciones a las uniones entre diferentes las mismas. Cabe destacar que el {\it FCP} s\'olo utiliza 2 caracter\'isticas independientes para describir los segmentos de los filamentos, siendo el \'angulo entre aristas usado en la etapa de selecci\'on de subconjuntos de caminos, y el ancho, empleado para describir el peso de las aristas.  
 %es de complejidad $\mathcal{O}(N^{(2K+2)})$, con $N$ como n\'umero de nodos y $k$ como el n\'umero m\'aximo de caminos que pasan por cada v\'ertice. 
 % Aquello permitir\'ia pasar de Fig1d a Fig2b por ejemplo
 
@@ -149,7 +149,7 @@ Esto nos permite establecer la pregunta:
 %El alumno de debe reordenar esta pregunta, partiendo por ejemplo de Recorrido de Grafos + Optimización sobre características de ancho, ángulo, etc como métodos para determinar la correcta cantidad de filamentos.
 %2-4-26
 \smallskip
-¿Es posible determinar correctamente la cantidad de filamentos, desarrollando un modelo de optimizaci\'on que utilice una combinaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, ángulo de bifurcación, curvatura o dirección, en la asignaci\'on de pesos como en la selecci\'on del subconjunto de caminos?
+¿Es posible determinar correctamente la cantidad de filamentos, desarrollando un modelo de optimizaci\'on que utilice una combinaci\'on de m\'ultiples caracter\'isticas como el largo, ancho, ángulo de bifurcación, curvatura o dirección, tanto en la asignaci\'on de pesos como en la selecci\'on del subconjunto de caminos?
 \smallskip
 
 % costo computacional de m\'etodos de optimizaci\'on es abordado con algoritmos de aproximación o heurísticas
@@ -169,7 +169,7 @@ A aquella pregunta, se debe agregar que existe informaci\'on \textit{a priori}, 
 
 \section{Hipótesis, Objetivos y Contribuci\'on}
 \label{hipotesis}
-Se plantea como hip\'otesis que a partir de un grafo que representa una red de filamentos, obtenido desde una imagen de microscop\'ia con t\'ecnicas descritas en la literatura, y utilizando una combinaci\'on de caracter\'isticas de los segmentos de filamentos como largo, ancho, \'angulo de bifurcaci\'on o curvatura, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un modelo de optimizaci\'on.
+Se plantea como hip\'otesis que a partir de un grafo con pesos, no dirigido, con o sin ciclos, que representa una red de filamentos, en conjunto con utilizar una combinaci\'on de caracter\'isticas de los segmentos de filamentos como largo, ancho, \'angulo de bifurcaci\'on o curvatura, sumado a la incorporaci\'on de informaci\'on previa disponible sobre el tipo de c\'elula (red de filamentos con o sin ciclos), es posible identificar a cada filamento en la red resolviendo un modelo de optimizaci\'on.
 
 Para validar esta hip\'otesis, se propone realizar los siguientes objetivos:
 \subsection{Objetivo General}
@@ -178,9 +178,10 @@ Desarrollar un modelo de optimizaci\'on para la individualizaci\'on de filamento
 
 \subsection{Objetivos Espec\'ificos}
 \begin{itemize}
-    \item Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos. 
+    \item Generar un modelo de optimizaci\'on para la identificaci\'on de filamentos a partir de un grafo con pesos que representa la red de filamentos.
     \item Implementar un algoritmo que resuelva el modelo de optimizaci\'on, entregando como salida la identificaci\'on de filamentos, considerando casos de solapamiento y/o cruce.
-    \item Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen una neurona, una bacteria y una c\'elula eucariota de planta. 
+    \item Identificar la ponderaci\'on de propiedades que entregue mejores resultados para grafos que representen una neurona, una bacteria y una c\'elula eucariota de planta.
+    \item Evaluar t\'ecnicas que usan s\'olo herramientas de visi\'on por computador, como \cite{boudaoud2014fibriltool}, basada en poblaci\'on de p\'ixeles y \cite{xu2015soax}, que utiliza un m\'etodo derivado de contornos activos. 
     
     %una soluci\'on exacta o aproximada respecto a la individualizaci\'on, dependiendo de la complejidad computacional del problema. 
 \end{itemize}
@@ -203,7 +204,7 @@ Por otra parte, el uso de software existente que provee pre-procesamiento de im\
 %el {\it Path MTU Discovery} utilizado en redes para 
 
 El n\'ucleo de la investigaci\'on estar\'a enfocado en desarrollar una formulaci\'on matem\'atica en la que las aristas del grafo contengan pesos asociados a la combinaci\'on de propiedades como el largo, ancho, \'angulo de bifurcación, curvatura o direcci\'on, las que permitan identificar a los filamentos que componen la red a trav\'es del planteamiento de un modelo de optimizaci\'on, con el fin de clasificarlos correctamente con respecto a la subestructura a la que pertenecen, as\'i como determinar si el v\'ertice es parte de varias subestructuras simult\'aneamente o si se traslapa con otra.
-La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on, que se ver\'a influido por el n\'umero de nodos en el grafo. En caso de que las los segmentos/aristas que constituyen el dominio de b\'usqueda para el modelo de optimizaci\'on sea demasiado grande, ser\'a necesario definir una heur\'istica que permita acotarlo.
+La formulaci\'on deber\'a considerar balancear el peso de cada propiedad con respecto al peso final de cada arista, siendo este procedimiento lo m\'as autom\'atico posible, es decir, requiriendo la menor interacci\'on con el usuario. Otro aspecto a considerar ser\'a el costo computacional de la soluci\'on, que se ver\'a influido por el n\'umero de nodos en el grafo. En caso de que los segmentos/aristas que constituyen el dominio de b\'usqueda para el modelo de optimizaci\'on sea demasiado grande, ser\'a necesario definir una heur\'istica que permita acotarlo. Por ejemplo, se pueden descartar soluciones infactibles. 
 % automatizacion de parametros?
 %Es aqu\'i donde los problemas asociados de capacidad computacional pueden encontrarse
 
@@ -213,6 +214,9 @@ Con esta formulaci\'on se proceder\'a a construir un algoritmo que permita resol
 % COMO MEDIR LA CALIDAD
 % Agregar test de hipotesis Kolgomorov Student t
 Para la validaci\'on del algoritmo, se utilizar\'a como informaci\'on de entrada, im\'agenes sint\'eticas y luego im\'agenes reales. Adem\'as de realizar la extracci\'on del grafo que representa la red, las im\'agenes reales se encontrar\'an evaluadas por expertos, lo que establece el \textit{Gold Standard}, que es en este caso la identificaci\'on manual de filamentos realizada por el o los expertos contra la cual se realizar\'a la validaci\'on, dado que indica la cantidad correcta de filamentos, cruces y/o solapamientos.
+La diferencia entre la identificaci\'on manual realizada por el experto y la individualizaci\'on autom\'atica entregada por el algoritmo al resolver el problema de optimizaci\'on se medir\'a con la m\'etrica {\it Variation of Information}\cite{meilua2007comparing}, el \'indice de Jaccard y el \'indice de Rand. Cada uno de los procesos de identificaci\'on de filamentos mencionado genera un cluster, el que est\'a dividido en sets, con cada set agrupando a las aristas que conforman un filamento. Esto permite realizar la comparaci\'on de los sets entre clusters, determinando la similitud entre las soluciones entregadas.
+%Ambos procesos de identificaci\'on de filamentos pueden ser vistos como particiones del grafo que representa la red, por lo que los \'indices y la m\'etrica indicada permitir\'an cuantificar la precisi\'on del modelo de optimizaci\'on resuelto.
+
 Algunas de las im\'agenes reales provendr\'an de {\it papers} recopilados en la investigaci\'on del estado del arte, a modo de realizar una comparaci\'on con los resultados de los m\'etodos encontrados. Por su parte, las im\'agenes sint\'eticas permitir\'a medir la eficacia de la ponderaci\'on de propiedades respecto a casos iniciales de baja complejidad. Todo lo anterior permitir\'a establecer la cantidad de aciertos y errores del algoritmo.
 
 
